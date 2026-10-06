@@ -1,6 +1,6 @@
 # Spec 001 — Core Order Path
 
-Status: APPROVED
+Status: DONE
 Owner: Adarsh
 Next specs: see [ROADMAP](../ROADMAP.md)
 

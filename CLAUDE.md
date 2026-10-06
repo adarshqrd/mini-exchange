@@ -17,6 +17,6 @@ This repo uses **spec-driven development**. Specs are the source of truth; code 
 - Prices are `long` ticks, never `double`.
 
 ## Commands
-- Build & test: `mvn -q test`
-- Spec traceability: `scripts/spec-check.sh`
-- Run server: `mvn -q exec:java` (see README)
+- Tests + traceability: `scripts/test.sh` (Maven may default to an old JDK; scripts select JDK 21+)
+- Spec traceability only: `scripts/spec-check.sh`
+- Server / demo / replay / latency: `scripts/server.sh`, `scripts/demo.sh`, `scripts/replay.sh`, `scripts/bench.sh`

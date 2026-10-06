@@ -4,7 +4,7 @@ Each spec is a shippable slice. A spec is written and approved before its plan a
 
 | # | Spec | Status | Notes |
 |---|---|---|---|
-| 001 | Core order path | APPROVED | FIX in → validate → risk → match → cancel → audit |
+| 001 | Core order path | DONE | FIX in → validate → risk → match → cancel → audit |
 | 002 | Risk controls | IDEA | Kill switch (operator command + auto after N rejects in M sec, cancels resting orders); per-member credit limit (cumulative open notional) |
 | 003 | Live dashboard | IDEA | Web view of order book, trades, rejects; counters + latency histogram |
 | 004 | Event streaming | IDEA | `EventPublisher` interface, in-memory impl, Kafka adapter |
