@@ -31,8 +31,11 @@ TCP clients ──► Gateway (thread per connection: read line, decode FIX)
 avoids locks in the matching path, and mirrors how real matching engines are built.
 Concurrency lives only at the edges (I/O).
 
-**Determinism:** the engine gets time from an injected `Clock` and generates IDs from
-counters, so replaying the same inbound sequence yields identical outputs (AC-41).
+**Determinism:** the engine never reads the wall clock. The runner stamps each inbound
+message when it is sequenced, that timestamp is audited, and the engine uses it for
+TransactTime. IDs come from counters. So replaying the audit log yields identical outputs (AC-41).
+*(Changed during implementation: originally an injected `Clock`; taking time from the event is
+simpler and makes replay exact without a fake clock.)*
 
 ## Package layout (`com.miniexchange`)
 
@@ -43,7 +46,7 @@ counters, so replaying the same inbound sequence yields identical outputs (AC-41
 | `config` | `SymbolConfig` (refPrice, collarPct, maxQty, maxNotional), loader | NFR-3 |
 | `risk` | `Validator` (AC-01..05), `RiskChecker` (AC-10..12) | AC-01..13 |
 | `book` | `OrderBook` — per symbol, `TreeMap<price, ArrayDeque<Order>>` per side | AC-20..22, NFR-1 |
-| `engine` | `MatchingEngine` — applies inbound, returns outbound list; `Clock` | AC-23, AC-30..32 |
+| `engine` | `MatchingEngine` — applies inbound, returns outbound list; `EngineRunner` — single thread + audit | AC-23, AC-30..32 |
 | `audit` | `AuditLog` (append-only file: seq, ts, direction, member, raw), `Replayer` | AC-40, AC-41 |
 | `gateway` | `TcpGateway`, `Session` | §4 |
 | root | `Main` (start server), `DemoClient` (scripted demo) | — |

@@ -13,7 +13,7 @@ This repo uses **spec-driven development**. Specs are the source of truth; code 
 - If implementation reveals the spec is wrong or ambiguous, stop and update the spec (and note it in `specs/ROADMAP.md` decisions log) before changing code.
 - Every test `@DisplayName` starts with the AC/NFR id it proves, e.g. `"AC-20 price-time priority"`.
 - `scripts/spec-check.sh` must pass: every AC in a spec has at least one test.
-- Engine core is single-threaded and deterministic: no `System.currentTimeMillis()`, no randomness, no `HashMap` iteration order dependence in the engine — use the injected `Clock`.
+- Engine core is single-threaded and deterministic: no `System.currentTimeMillis()`, no randomness, no `HashMap` iteration order dependence in the engine. Time comes only from the sequenced inbound event's timestamp.
 - Prices are `long` ticks, never `double`.
 
 ## Commands
