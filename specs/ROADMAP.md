@@ -13,3 +13,4 @@ Each spec is a shippable slice. A spec is written and approved before its plan a
 - 2026-10-06: Timeline cut to 1 day. Original single spec split into 001–004; 001 is the thinnest end-to-end slice.
 - 2026-10-06: No Docker on dev machine → Kafka deferred to 004 behind an interface.
 - 2026-10-06: Spec 001 clarified during implementation (C-1 duplicate ClOrdID semantics, C-2 member identity, C-3 wire format). Spec updated before code.
+- 2026-10-06: Ratified constitution v1.0.0 (`.specify/memory/constitution.md`), codifying the CLAUDE.md rules as six principles.
