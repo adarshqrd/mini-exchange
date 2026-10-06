@@ -42,7 +42,7 @@ simpler and makes replay exact without a fake clock.)*
 | Package | Contents | Covers |
 |---|---|---|
 | `fix` | `FixMessage` (tag→value map), `FixCodec` (parse/encode, SOH or `|`) | §4, NFR-2 |
-| `model` | `Side`, `Order`, `ExecReport` records, `RejectReason` | — |
+| `model` | `Side`, `Order`, `Prices` (decimal ↔ long ticks) | — |
 | `config` | `SymbolConfig` (refPrice, collarPct, maxQty, maxNotional), loader | NFR-3 |
 | `risk` | `Validator` (AC-01..05), `RiskChecker` (AC-10..12) | AC-01..13 |
 | `book` | `OrderBook` — per symbol, `TreeMap<price, ArrayDeque<Order>>` per side | AC-20..22, NFR-1 |
