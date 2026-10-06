@@ -76,6 +76,11 @@ Required fields on `F`: SenderCompID(49), ClOrdID(11), OrigClOrdID(41).
 - **AC-40** Every inbound and outbound message is appended to an audit log with a monotonic sequence number and timestamp.
 - **AC-41** Replaying the audit log's inbound messages into a fresh engine produces identical outbound messages (determinism).
 
+### Clarifications (found during implementation)
+- **C-1 (AC-04)** "Already used" means a ClOrdID of a previously *accepted* order. A rejected order's ClOrdID may be reused, so a member can fix and resend a rejected order. ClOrdIDs are scoped per member.
+- **C-2 (§4)** Member identity is bound to the TCP connection from the SenderCompID of its first message; all later messages on that connection are attributed to that member.
+- **C-3 (§4)** Outbound messages use `|` as delimiter for readability. BodyLength(9) and CheckSum(10) are not computed (FIX session layer, out of scope).
+
 ## 6. Non-functional requirements
 
 - **NFR-1 Book integrity**: after every event the book is never crossed (best bid < best ask).
